@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section style="background-color: var(--azul-poli, #1a3766); padding: 50px 20px;">
+
+  <div class="d-flex justify-content-center mb-5">
+    <div class="input-group" style="max-width: 600px;">
+      <span class="input-group-text bg-transparent border-white">
+        <i class="bi bi-search text-white"></i>
+      </span>
+      <input type="text" id="campoBusca" class="form-control bg-transparent border-white text-white campo-busca" placeholder="Descreva sua dúvida">
+      <span class="input-group-text bg-transparent border-white" style="cursor: pointer;" onclick="document.getElementById('campoBusca').value = '';">
+        <i class="bi bi-x-lg text-white"></i>
+      </span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center g-4 mb-4">
+      <div class="col-6 col-md-3">
+        <a href="#" class="card-poli">
+          <i class="bi bi-diagram-3"></i>
+          <span>Redes & Conexão</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-3">
+        <a href="#" class="card-poli">
+          <i class="bi bi-book"></i>
+          <span>Sistemas acadêmicos</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-3">
+        <a href="#" class="card-poli">
+          <i class="bi bi-chat-dots"></i>
+          <span>Canais de comunicação</span>
+        </a>
+      </div>
+    </div>
+    <div class="row justify-content-center g-4">
+      <div class="col-6 col-md-3">
+        <a href="#" class="card-poli">
+          <i class="bi bi-display"></i>
+          <span>Suporte Técnico (DTI)</span>
+        </a>
+      </div>
+      <div class="col-6 col-md-3">
+        <a href="#" class="card-poli">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span>Mapa do campus</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</section>
+{% endblock %}

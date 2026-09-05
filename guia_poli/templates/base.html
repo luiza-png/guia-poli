@@ -1,0 +1,102 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Guia Poli{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <style>
+    :root {
+      --azul-poli: #1a3766;
+      --vermelho-poli: #d92b2b;
+    }
+    body {
+      margin: 0;
+    }
+    .header-poli {
+      background-color: #ffffff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+    .header-poli .brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--azul-poli);
+      text-decoration: none;
+      border-bottom: 3px solid var(--vermelho-poli);
+      padding-bottom: 2px;
+    }
+    .header-poli .nav-link-poli {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--azul-poli);
+      text-decoration: none;
+      border-bottom: 3px solid var(--vermelho-poli);
+      padding-bottom: 2px;
+    }
+    footer {
+      background-color: #ffffff;
+      text-align: center;
+      padding: 20px 0;
+      border-top: 1px solid #eee;
+    }
+    .card-poli {
+      background-color: #ffffff;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 15px;
+      text-decoration: none;
+      color: var(--azul-poli);
+      height: 160px;
+      transition: transform 0.15s ease;
+    }
+    .card-poli:hover {
+      transform: translateY(-4px);
+      color: var(--azul-poli);
+    }
+    .card-poli i {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+    .card-poli span {
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-align: center;
+      border-bottom: 2px solid var(--vermelho-poli);
+      padding-bottom: 2px;
+    }
+    .campo-busca::placeholder {
+      color: #ffffff;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header-poli">
+    <a href="/" class="brand d-flex align-items-center" style="text-decoration: none;">
+      <img src="{% static 'images/Guia_Poli.svg' %}" alt="Logo" style="height: 75px; margin-right: 2px;">
+      Guia Poli
+    </a>
+    <a href="/" class="nav-link-poli">Início</a>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+  <div class="d-flex justify-content-center align-items-center">
+    <img src="{% static 'images/POLI_logo.png' %}" alt="Logo POLI e UPE" style="height: 70px;">
+  </div>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
