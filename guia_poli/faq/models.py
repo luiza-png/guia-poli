@@ -56,3 +56,14 @@ class Pergunta(models.Model):
 
     def __str__(self):
         return self.pergunta
+
+class Pesquisa(models.Model):
+    termo = models.CharField(max_length=255)
+    data_hora = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        managed = False
+        db_table = "pesquisas"
+
+    def __str__(self):
+        return self.termo

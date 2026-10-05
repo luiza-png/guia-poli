@@ -1,29 +1,83 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<section class="py-5" style="background-color: var(--azul-poli, #1a3766); min-height: 70vh;">
-  <div class="container">
-    <div class="text-white mb-5">
-      <h1>{{ titulo }}</h1>
-      <p class="lead">{{ descricao }}</p>
-    </div>
 
-    <div class="row g-4">
-      {% for item in itens %}
-      <div class="col-12 col-md-6">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h2 class="h5">{{ item.titulo }}</h2>
-            <p class="mb-0">{{ item.descricao }}</p>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
+<section class="hero-poli">
+  <div class="wrap-poli">
 
-    <a href="{% url 'home' %}" class="btn btn-light mt-4">
-      Voltar para a Home
-    </a>
+    <h1 class="hero-titulo">
+      {{ titulo }}
+    </h1>
+
+    {% if descricao %}
+      <p class="hero-sub">
+        {{ descricao }}
+      </p>
+    {% endif %}
+
   </div>
 </section>
+
+
+<section class="cards-poli">
+
+  <div class="wrap-poli">
+
+    {% if assuntos %}
+
+      {% for assunto in assuntos %}
+
+        <div class="mb-5">
+
+          <h2 class="mb-3">
+            {{ assunto.nome }}
+          </h2>
+
+          {% if assunto.descricao %}
+            <p>
+              {{ assunto.descricao }}
+            </p>
+          {% endif %}
+
+
+          {% if assunto.perguntas.all %}
+
+            {% for pergunta in assunto.perguntas.all %}
+
+              <div class="card mb-3">
+
+                <div class="card-body">
+
+                  <h4 class="card-title">
+                    {{ pergunta.pergunta }}
+                  </h4>
+
+                  <p class="card-text">
+                    {{ pergunta.resposta }}
+                  </p>
+
+                </div>
+
+              </div>
+
+            {% endfor %}
+
+          {% endif %}
+
+        </div>
+
+      {% endfor %}
+
+    {% else %}
+
+      <p>
+        Nenhuma informação cadastrada nesta categoria.
+      </p>
+
+    {% endif %}
+
+  </div>
+
+</section>
+
 {% endblock %}
