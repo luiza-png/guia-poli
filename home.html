@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero-poli">
+  <div class="wrap-poli">
+    <h1 class="hero-titulo">Encontre o que você precisa na Poli.</h1>
+    <p class="hero-sub">Redes, sistemas, contatos e localização do campus em um só lugar.</p>
+
+    <!-- Barra de pesquisa: mantida apenas visualmente nesta etapa. -->
+    <div class="busca-poli">
+      <input type="text" id="campoBusca" class="campo-busca" placeholder="Descreva sua dúvida" aria-label="Descreva sua dúvida">
+      <button type="button" class="btn-buscar">Buscar</button>
+    </div>
+  </div>
+</section>
+
+<section class="cards-poli">
+  <div class="wrap-poli">
+    <div class="row justify-content-center g-3 mb-3">
+      <div class="col-6 col-md-4">
+        <a href="{% url 'redes' %}" class="card-poli">
+          <i class="bi bi-diagram-3"></i>
+          <span>Redes e conexão</span>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4">
+        <a href="{% url 'sistemas' %}" class="card-poli">
+          <i class="bi bi-book"></i>
+          <span>Sistemas acadêmicos</span>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4">
+        <a href="{% url 'comunicacao' %}" class="card-poli">
+          <i class="bi bi-chat-dots"></i>
+          <span>Canais de comunicação</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="row justify-content-center g-3">
+      <div class="col-6 col-md-4">
+        <a href="{% url 'suporte' %}" class="card-poli">
+          <i class="bi bi-display"></i>
+          <span>Suporte técnico (DTI)</span>
+        </a>
+      </div>
+
+      <div class="col-6 col-md-4">
+        <a href="{% url 'mapa' %}" class="card-poli">
+          <i class="bi bi-geo-alt"></i>
+          <span>Mapa do campus</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
