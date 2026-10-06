@@ -1,29 +1,43 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<section class="py-5" style="background-color: var(--azul-poli, #1a3766); min-height: 70vh;">
-  <div class="container">
-    <div class="text-white mb-5">
-      <h1>{{ titulo }}</h1>
-      <p class="lead">{{ descricao }}</p>
+<style>
+  .hero-info { background-color: var(--azul-poli); padding: 48px 0 120px; }
+  .hero-info .trilha { font-size: 0.9rem; color: #c9d6ee; margin-bottom: 16px; }
+  .hero-info .trilha a { color: #c9d6ee; text-decoration: none; }
+  .hero-info .trilha a:hover { color: #ffffff; text-decoration: underline; }
+  .painel-info { background: #ffffff; border: 1px solid var(--borda-poli); border-radius: 8px; padding: 40px 32px; text-align: center; }
+  .painel-info .icone { width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 12px; background: #e8eef7; color: var(--azul-poli); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; }
+  .painel-info h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; color: var(--azul-poli); margin: 0 0 8px; }
+  .painel-info p { color: #5b6b82; max-width: 480px; margin: 0 auto 24px; }
+  .btn-polimap { display: inline-flex; align-items: center; gap: 8px; background: var(--vermelho-poli); color: #ffffff; font-weight: 700; padding: 14px 28px; border-radius: 6px; text-decoration: none; transition: background-color 0.15s ease; }
+  .btn-polimap:hover { background: #b82222; color: #ffffff; }
+  .btn-polimap:focus-visible { outline: 3px solid var(--azul-poli); outline-offset: 2px; }
+  .btn-voltar { display: inline-block; margin-top: 24px; border: 1px solid var(--azul-poli); color: var(--azul-poli); background: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 700; text-decoration: none; }
+  .btn-voltar:hover { background: var(--azul-poli); color: #ffffff; }
+</style>
+
+<section class="hero-info">
+  <div class="wrap-poli">
+    <div class="trilha"><a href="{% url 'home' %}">Início</a> / {{ titulo }}</div>
+    <h1 class="hero-titulo">{{ titulo }}</h1>
+    <p class="hero-sub mb-0">Encontre blocos, laboratórios e salas da Poli no mapa interativo.</p>
+  </div>
+</section>
+
+<section class="cards-poli">
+  <div class="wrap-poli">
+    <div class="painel-info">
+      <div class="icone"><i class="bi bi-geo-alt" aria-hidden="true"></i></div>
+      <h2>PoliMap</h2>
+      <p>O guia de localização da Poli, com blocos, laboratórios e salas do campus.</p>
+      <a class="btn-polimap" href="https://polimap.vercel.app/acessar" target="_blank" rel="noopener noreferrer">
+        Abrir o PoliMap
+        <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+      </a>
     </div>
 
-    <div class="row g-4">
-      {% for local in locais %}
-      <div class="col-12 col-md-6">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <h2 class="h5">{{ local.nome }}</h2>
-            <p class="mb-0">{{ local.descricao }}</p>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-
-    <a href="{% url 'home' %}" class="btn btn-light mt-4">
-      Voltar para a Home
-    </a>
+    <a class="btn-voltar" href="{% url 'home' %}">Voltar para a home</a>
   </div>
 </section>
 {% endblock %}

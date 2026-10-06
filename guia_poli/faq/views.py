@@ -69,11 +69,7 @@ def suporte(request):
 
 
 def comunicacao(request):
-    return render(request, "info_page.html", {
-        "titulo": "Comunicação",
-        "descricao": "Informações de comunicação.",
-        "assuntos": [],
-    })
+    return _pagina_categoria(request, "Canais de Comunicação")
 
 
 def pesquisar(request):

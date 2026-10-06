@@ -1,16 +1,13 @@
-```html
 {% extends 'base.html' %}
 
 {% block content %}
-
 <section class="hero-poli">
   <div class="wrap-poli">
     <h1 class="hero-titulo">Encontre o que você precisa na Poli.</h1>
     <p class="hero-sub">Redes, sistemas, contatos e localização do campus em um só lugar.</p>
 
     <!-- Barra de pesquisa -->
-    <form method="GET" action="{% url 'pesquisar' %}" class="busca-poli">
-
+    <form action="{% url 'pesquisar' %}" method="get" class="busca-poli">
       <input
         type="text"
         name="q"
@@ -23,16 +20,13 @@
       <button type="submit" class="btn-buscar">
         Buscar
       </button>
-
     </form>
   </div>
 </section>
 
 <section class="cards-poli">
   <div class="wrap-poli">
-
     <div class="row justify-content-center g-3 mb-3">
-
       <div class="col-6 col-md-4">
         <a href="{% url 'redes' %}" class="card-poli">
           <i class="bi bi-diagram-3"></i>
@@ -53,11 +47,9 @@
           <span>Canais de comunicação</span>
         </a>
       </div>
-
     </div>
 
     <div class="row justify-content-center g-3">
-
       <div class="col-6 col-md-4">
         <a href="{% url 'suporte' %}" class="card-poli">
           <i class="bi bi-display"></i>
@@ -71,60 +63,8 @@
           <span>Mapa do campus</span>
         </a>
       </div>
-
     </div>
-
   </div>
 </section>
-
 {% endblock %}
-```
 
-### O que foi alterado
-
-A estrutura visual continua a mesma. A principal mudança foi:
-
-**Antes:**
-
-```html
-<div class="busca-poli">
-  <input ...>
-  <button type="button">Buscar</button>
-</div>
-```
-
-**Agora:**
-
-```html
-<form method="GET" action="{% url 'pesquisar' %}" class="busca-poli">
-```
-
-e:
-
-```html
-<input
-    type="text"
-    name="q"
-    ...
->
-```
-
-```html
-<button type="submit" class="btn-buscar">
-    Buscar
-</button>
-```
-
-Assim, se o usuário digitar:
-
-> `wifi`
-
-e clicar em **Buscar**, o navegador enviará:
-
-```text
-/pesquisa/?q=wifi
-```
-
-A sua `views.py` receberá `wifi`, salvará a pesquisa na tabela `pesquisas` e fará a busca nas perguntas/respostas.
-
-**O próximo passo agora é testar essa integração.** Antes disso, confirme também que você já criou o `pesquisa.html` e que a função `pesquisar` e a URL `pesquisa/` estão no projeto.
