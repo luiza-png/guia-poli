@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .hero-info { background-color: var(--azul-poli); padding: 48px 0 120px; }
+  .hero-info .trilha { font-size: 0.9rem; color: #c9d6ee; margin-bottom: 16px; }
+  .hero-info .trilha a { color: #c9d6ee; text-decoration: none; }
+  .hero-info .trilha a:hover { color: #ffffff; text-decoration: underline; }
+  .painel-info { background: #ffffff; border: 1px solid var(--borda-poli); border-radius: 8px; padding: 32px; }
+  .indice-info { position: sticky; top: 24px; }
+  .indice-info .rotulo { font-size: 0.8rem; font-weight: 700; color: #5b6b82; margin: 0 0 12px; }
+  .indice-info a { display: block; padding: 8px 12px; margin-bottom: 4px; border-left: 3px solid transparent; color: var(--azul-poli); text-decoration: none; font-weight: 500; }
+  .indice-info a:hover { border-left-color: var(--vermelho-poli); background: #f3f6fb; }
+  .assunto-info { scroll-margin-top: 24px; margin-bottom: 40px; }
+  .assunto-info:last-child { margin-bottom: 0; }
+  .assunto-info h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; color: var(--azul-poli); margin: 0 0 8px; }
+  .assunto-info .desc { color: #5b6b82; margin-bottom: 16px; }
+  .accordion-poli .accordion-item { border: 1px solid var(--borda-poli); border-radius: 8px !important; margin-bottom: 8px; overflow: hidden; }
+  .accordion-poli .accordion-button { font-weight: 700; color: var(--azul-poli); background: #ffffff; box-shadow: none; }
+  .accordion-poli .accordion-button:not(.collapsed) { background: #f3f6fb; }
+  .accordion-poli .accordion-button:focus-visible { outline: 3px solid var(--vermelho-poli); outline-offset: -3px; }
+  .accordion-poli .accordion-body { color: #2b3a52; line-height: 1.7; }
+  .vazio-info { text-align: center; color: #5b6b82; padding: 24px 0; }
+  .ajuda-info { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 24px; padding: 20px 24px; border: 1px solid #f2b8be; background: #fdeef0; border-radius: 8px; color: #8a1c28; }
+  .ajuda-info i { font-size: 1.6rem; color: var(--vermelho-poli); }
+  .ajuda-info .texto { flex: 1; min-width: 240px; }
+  .ajuda-info a.contato { color: #8a1c28; font-weight: 700; }
+  .btn-voltar { border: 1px solid var(--azul-poli); color: var(--azul-poli); background: #ffffff; padding: 8px 16px; border-radius: 6px; font-weight: 700; text-decoration: none; }
+  .btn-voltar:hover { background: var(--azul-poli); color: #ffffff; }
+</style>
+
+<section class="hero-info">
+  <div class="wrap-poli">
+    <div class="trilha"><a href="{% url 'home' %}">Início</a> / {{ titulo }}</div>
+    <h1 class="hero-titulo">{{ titulo }}</h1>
+    {% if descricao %}
+      <p class="hero-sub mb-0">{{ descricao }}</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="cards-poli">
+  <div class="wrap-poli">
+    <div class="painel-info">
+      {% with total=assuntos|length %}
+      {% if total %}
+        <div class="row g-4">
+
+          {% if total > 1 %}
+          <nav class="col-lg-3" aria-label="Assuntos desta página">
+            <div class="indice-info">
+              <p class="rotulo">Nesta página</p>
+              {% for assunto in assuntos %}
+                <a href="#assunto-{{ assunto.id }}">{{ assunto.nome }}</a>
+              {% endfor %}
+            </div>
+          </nav>
+          {% endif %}
+
+          <div class="col-lg-{% if total > 1 %}9{% else %}12{% endif %}">
+            {% for assunto in assuntos %}
+              <section class="assunto-info" id="assunto-{{ assunto.id }}">
+                <h2>{{ assunto.nome }}</h2>
+                {% if assunto.descricao %}
+                  <p class="desc">{{ assunto.descricao }}</p>
+                {% endif %}
+
+                <div class="accordion accordion-poli">
+                  {% for pergunta in assunto.perguntas.all %}
+                    <div class="accordion-item">
+                      <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p{{ assunto.id }}-{{ pergunta.id }}" aria-expanded="false" aria-controls="p{{ assunto.id }}-{{ pergunta.id }}">
+                          {{ pergunta.pergunta }}
+                        </button>
+                      </h3>
+                      <div id="p{{ assunto.id }}-{{ pergunta.id }}" class="accordion-collapse collapse">
+                        <div class="accordion-body">{{ pergunta.resposta|urlize|linebreaksbr }}</div>
+                      </div>
+                    </div>
+                  {% empty %}
+                    <p class="vazio-info">Em breve, mais informações sobre este assunto.</p>
+                  {% endfor %}
+                </div>
+              </section>
+            {% endfor %}
+          </div>
+
+        </div>
+      {% else %}
+        <p class="vazio-info mb-0">Ainda não há informações cadastradas nesta categoria.</p>
+      {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="ajuda-info">
+      <i class="bi bi-headset" aria-hidden="true"></i>
+      <div class="texto">
+        <strong>Não encontrou o que procurava?</strong><br>
+        Fale com o DTI, no Bloco F da Poli, levando um documento oficial com foto, ou escreva para
+        <a class="contato" href="mailto:dti@poli.br">dti@poli.br</a>.
+      </div>
+      <a class="btn-voltar" href="{% url 'home' %}">Buscar outra dúvida</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
