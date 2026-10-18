@@ -1,0 +1,73 @@
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section style="background-color: var(--azul-poli, #1a3766); padding: 50px 20px; min-height: 70vh;">
+
+  <div class="container">
+
+    <div class="text-center text-white mb-5">
+      {% if termo %}
+        <h2>Resultados para: "{{ termo }}"</h2>
+      {% else %}
+        <h2>Pesquisa</h2>
+      {% endif %}
+    </div>
+
+    {% if resultados %}
+
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+
+          {% for resultado in resultados %}
+
+            <div class="card mb-3">
+              <div class="card-body">
+
+                <h5 class="card-title">
+                  {{ resultado.pergunta }}
+                </h5>
+
+                <p class="card-text">
+                  {{ resultado.resposta }}
+                </p>
+
+                <small class="text-muted">
+                  {{ resultado.assunto.categoria.nome }}
+                  → {{ resultado.assunto.nome }}
+                </small>
+
+              </div>
+            </div>
+
+          {% endfor %}
+
+        </div>
+      </div>
+
+    {% elif termo %}
+
+      <div class="text-center text-white">
+        <h4>Nenhum resultado encontrado.</h4>
+
+        <p>
+          Não encontramos informações para "{{ termo }}".
+          Tente utilizar outras palavras na pesquisa.
+        </p>
+      </div>
+
+    {% else %}
+
+      <div class="text-center text-white">
+        <p>Digite uma dúvida para realizar uma pesquisa.</p>
+      </div>
+
+    {% endif %}
+
+  </div>
+
+</section>
+
+{% endblock %}
+```

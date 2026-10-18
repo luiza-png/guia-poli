@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+from faq.data import MAPA
+
+
+def mapa(request):
+    return render(request, "mapa.html", {
+        "titulo": MAPA["titulo"],
+        "descricao": MAPA["descricao"],
+        "locais": MAPA["locais"],
+    })
