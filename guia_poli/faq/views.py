@@ -65,11 +65,11 @@ def sistemas(request):
 
 
 def suporte(request):
-    return _pagina_categoria(request, "Suporte Técnico")
+    return _pagina_categoria(request, "Acesso ao Computador e E-mail")
 
 
 def comunicacao(request):
-    return _pagina_categoria(request, "Canais de Comunicação")
+    return _pagina_categoria(request, "Canais de Comunicação e DTI")
 
 
 def pesquisar(request):

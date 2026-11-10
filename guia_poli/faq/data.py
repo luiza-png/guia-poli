@@ -39,7 +39,7 @@ CATEGORIAS = {
         ],
     },
     "comunicacao": {
-        "titulo": "Canais de comunicação",
+        "titulo": "Canais de comunicação e DTI",
         "descricao": "Informações de teste sobre os canais oficiais de comunicação da POLI.",
         "itens": [
             {
@@ -57,7 +57,7 @@ CATEGORIAS = {
         ],
     },
     "suporte": {
-        "titulo": "Suporte Técnico (DTI)",
+        "titulo": "Acesso ao computador e E-mail",
         "descricao": "Informações de teste para problemas relacionados a computadores, sistemas e tecnologia.",
         "itens": [
             {

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 <style>
   .hero-info { background-color: var(--azul-poli); padding: 48px 0 120px; }
@@ -40,4 +42,10 @@
     <a class="btn-voltar" href="{% url 'home' %}">Voltar para a home</a>
   </div>
 </section>
+<img
+    src="{% static 'images/mapa_poli.jpeg' %}"
+    alt="Mapa do campus da POLI-UPE"
+    class="img-fluid rounded mb-4"
+    style="width: 100%; height: auto;"
+>
 {% endblock %}
